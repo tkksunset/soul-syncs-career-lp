@@ -16,6 +16,7 @@ css/style.css
 js/main.js
 assets/images/logo/soul-syncs.png
 assets/images/mascot/think-chan-front.jpg
+assets/images/mascot/think-chan-wave.png
 assets/images/support/1.webp〜4.webp
 assets/images/work/1.webp〜4.webp
 assets/images/icons/
@@ -69,3 +70,18 @@ git push origin HEAD
 ## アクセシビリティ・動作
 
 FAQはQ1のみ初期表示、複数項目を独立して開閉できます。メニューはEscapeで閉じます。ポリシーはネイティブdialog、フォームはlabel・aria-describedby・エラー通知・送信状態を使用。動きを減らすOS設定に対応しています。Google Fonts以外の外部依存はありません。
+
+## FV正式素材の更新
+
+FVは提供された `01_手を振る.png` を元ファイルと同一のまま `assets/images/mascot/think-chan-wave.png` にコピーして使用しています。拡大切り抜き・色合成・変形はありません。正式ロゴは引き続き `assets/images/logo/soul-syncs.png` を使用します。他セクションの画像参照は変更していません。
+
+## FV背景装飾
+
+独立した透過PNG: `assets/images/decoration/hero-decoration.png`。
+淡い光・オレンジの曲線・抽象装飾のみ。文字・ロゴ・CTA・キャラクターは含みません。
+組み込みimage_genで生成しました。生成指示:「透過背景の縦長装飾素材。端に淡いピーチ色の光、右上・左下から細いオレンジ曲線、控えめな抽象円。中央・左上に広い透明領域。#F2380B / #FF6B42 / #FFF0E8。文字・数字・ロゴ・人物・動物・キャラクター・CTA・UIなし。」
+
+CSSの `.hero::before` だけで背景を表示します。HTMLコンテンツは変更していません。
+`.hero` の変数 `--hero-decoration-image`（画像）、`--hero-decoration-size`（サイズ）、`--hero-decoration-position`（位置）、`--hero-decoration-opacity`（濃さ）で調整可能です。
+スマホはcover / center、768px以上は110% auto / center top。トリミングはCSSで行い、元画像は変更しません。
+装飾はCSS背景なので読み上げ・フォーカス対象にならず、pointer-events:noneでリンク等の操作を妨げません。
