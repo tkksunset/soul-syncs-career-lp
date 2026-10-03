@@ -20,7 +20,8 @@ document.querySelectorAll('.faq-toggle').forEach(button=>button.addEventListener
 const sections=[...document.querySelectorAll('main>.section')];
 const sideLinks=[...document.querySelectorAll('.side-nav a')];
 let scheduled=false;
-function updateSection(){const marker=innerHeight*.35;let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=marker)active=section;}sideLinks.forEach(link=>{if(link.hash==='#'+active.id)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});scheduled=false;}
+let activeSectionId;
+function updateSection(){const marker=innerHeight*.35;let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=marker)active=section;}if(activeSectionId!==active.id){activeSectionId=active.id;sideLinks.forEach(link=>{if(link.hash==='#'+active.id)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});}scheduled=false;}
 addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateSection);}},{passive:true});addEventListener('resize',updateSection);updateSection();
 const privacy=document.querySelector('#privacy');
 document.querySelectorAll('.privacy-link').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();privacy.showModal();}));
