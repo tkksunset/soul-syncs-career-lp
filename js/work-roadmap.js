@@ -27,6 +27,41 @@ const WORK_ROADMAPS = {
   const status = section.querySelector('#work-roadmap-status');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let animation;
+  // Reserve only the height needed by the longest of the four real texts.
+  let measuredWidth=0;
+  function reserveRoadmapHeight(force=false) {
+    const width=roadmap.getBoundingClientRect().width;
+    if(!width||(!force&&Math.abs(width-measuredWidth)<1))return;
+    measuredWidth=width;
+    const clone=roadmap.cloneNode(true);
+    clone.querySelectorAll('[id]').forEach(element=>element.removeAttribute('id'));
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-labelledby');
+    clone.setAttribute('aria-hidden','true');
+    clone.inert=true;
+    Object.assign(clone.style,{position:'absolute',visibility:'hidden',pointerEvents:'none',width:width+'px',margin:'0'});
+    const titles=clone.querySelectorAll('.work-step-title');
+    const heading=clone.querySelector('h3');
+    titles.forEach(element=>element.style.minHeight='0');
+    heading.style.minHeight='0';
+    roadmap.parentElement.append(clone);
+    const heights=[0,0,0,0];
+    let headingHeight=0;
+    Object.values(WORK_ROADMAPS).forEach(data=>{
+      clone.querySelector('[data-roadmap-goal]').textContent=data.title;
+      titles.forEach((element,index)=>element.textContent=data.steps[index]);
+      headingHeight=Math.max(headingHeight,heading.getBoundingClientRect().height);
+      titles.forEach((element,index)=>heights[index]=Math.max(heights[index],element.getBoundingClientRect().height));
+    });
+    clone.remove();
+    roadmap.querySelector('h3').style.minHeight=Math.ceil(headingHeight)+'px';
+    stepTitles.forEach((element,index)=>element.style.minHeight=Math.ceil(heights[index])+'px');
+  }
+  reserveRoadmapHeight();
+  if('ResizeObserver' in window)new ResizeObserver(()=>reserveRoadmapHeight()).observe(roadmap);
+  if(document.fonts)document.fonts.ready.then(()=>reserveRoadmapHeight(true));
+  reducedMotion.addEventListener('change',event=>{if(event.matches&&animation)animation.cancel();});
+
   section.querySelectorAll('[name="work-future"]').forEach(radio => {
     radio.addEventListener('change', () => {
       if (!radio.checked) return;
