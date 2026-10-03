@@ -456,3 +456,48 @@
 #career .career-empathy-note{margin-top:14px;font-size:13px;line-height:1.95}
 #career .career-empathy-cta{margin-top:22px;font-size:14px}
 #career .career-empathy-trust{margin-top:10px;text-align:center;font-size:11px;line-height:1.8;color:var(--color-text-secondary)}
+
+/* Final consultation: match first-view reassurance styling. */
+#final-cta .hero-benefits { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 8px; }
+#final-cta .hero-benefits li { display: flex; align-items: center; gap: 10px; font-size:13px; font-weight: 500; line-height: 1.8; }
+#final-cta .hero-benefits br { display: none; }
+#final-cta .hero-benefit-icon {
+  width: 30px; height: 30px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--color-accent); color: var(--color-primary);
+  font: 500 21px 'Outfit', sans-serif;
+}
+#final-cta .hero-benefit-icon svg { width: 22px; height: 22px; }
+@media(min-width:1200px){
+  #final-cta .hero-benefits { grid-template-columns: .85fr 1.5fr 1fr; gap: 6px; }
+  #final-cta .hero-benefits li { gap: 4px; padding: 9px 5px; background: #ffffffb3; border: 1px solid var(--color-border); border-radius: 999px; font-size:10px; }
+  #final-cta .hero-benefits br { display: initial; }
+  #final-cta .hero-benefit-icon { width: 20px; height: 20px; background: transparent; font-size:20px; }
+  #final-cta .hero-benefit-icon svg { width: 18px; height: 18px; }
+}
+#final-cta .mascot{border-radius:0}
+
+/* SUPPORT: benefit-led illustrated cards. */
+#support .support-cards{gap:18px}
+#support .support-card{padding:20px 18px}
+#support .support-card-top{display:grid;grid-template-columns:110px minmax(0,1fr);align-items:center;gap:12px;margin-bottom:16px}
+#support .support-illustration{width:110px;height:auto;object-fit:contain}
+#support .support-card-heading{min-width:0}
+#support .support-category{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:12px;font-weight:700;color:var(--color-primary);line-height:1.7}
+#support .support-category .number{margin:0;font-size:26px}
+#support .support-card h3{margin:0;font-size:18px;line-height:1.75;word-break:normal;overflow-wrap:break-word;line-break:strict;text-wrap:pretty}
+#support .support-description{font-size:15px;line-height:1.95;word-break:normal;overflow-wrap:break-word;line-break:strict}
+#support .support-detail{margin-top:16px;padding:10px 12px;border-radius:12px;background:var(--color-accent);font-size:13px;font-weight:700;line-height:1.85;color:var(--color-primary);word-break:normal;overflow-wrap:break-word;line-break:strict}
+#support .support-closing{margin-top:26px;padding:22px 18px;border-radius:var(--radius);background:var(--color-accent);text-align:center}
+#support .support-closing p{font-size:14px;line-height:1.9;word-break:normal;overflow-wrap:break-word;line-break:strict}
+#support .support-closing p+p{margin-top:12px}
+#support .support-closing strong{font-size:18px;line-height:1.85;text-wrap:pretty}
+@media(max-width:430px){#support .support-card-top{grid-template-columns:1fr;gap:10px}#support .support-illustration{width:120px;justify-self:center}}
+
+/* CONTACT form only. */
+#application .contact-reassurance{list-style:none;padding:0;margin:22px 0 0;font-size:13px;line-height:1.85}
+#application .contact-reassurance li{display:flex;gap:8px;align-items:flex-start;margin-top:7px}
+#application .contact-reassurance li::before{content:'✓';color:var(--color-primary);font-weight:800;flex-shrink:0}
+#application .field-hint{font-size:12px;line-height:1.85;margin-top:8px;color:var(--color-text-secondary)}
+#application .form .btn{gap:6px;font-size:14px;line-height:1.8}
+#application .form textarea{line-height:1.85}
