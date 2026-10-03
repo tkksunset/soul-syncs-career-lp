@@ -1,0 +1,71 @@
+# Soul Sync’s キャリア支援LP
+
+無料キャリア設計への申し込みを目的とする、HTML / CSS / Vanilla JavaScriptの静的サイトです。公開作業は行っていません。既存のNext.jsファイルは以前の実装として残していますが、この静的サイトの動作・公開には不要です。
+
+## ローカル確認
+
+`index.html`をブラウザで直接開けます。Google Fontsの読み込みにはインターネット接続が必要です。未接続時には標準フォントで表示します。
+
+HTTPで確認する場合は、このディレクトリで `python3 -m http.server 8080` を実行し、`http://localhost:8080` を開いてください。
+
+## 静的サイトのディレクトリ構成
+
+```
+index.html
+css/style.css
+js/main.js
+assets/images/logo/soul-syncs.png
+assets/images/mascot/think-chan-front.jpg
+assets/images/support/1.webp〜4.webp
+assets/images/work/1.webp〜4.webp
+assets/images/icons/
+assets/images/decoration/
+assets/favicon/favicon.svg
+README.md
+.gitignore
+```
+
+## 素材と画像差し替え
+
+正式ロゴは添付画像12、正式シンクちゃんは添付画像13を変更せずコピーしています。シンクちゃんはSECTION 01・06・10のみ使用。PC右側もこれらのセクションが表示中の場合のみ出現します。新しいポーズや類似キャラクターは生成していません。
+
+support・workの写真は、今回のカンプの文字を含まない写真部分を切り出した仮素材です。カンプ全体・カード・見出しを画像として表示していません。正式写真がある場合は同名ファイルで差し替えるか、index.htmlのsrcとaltを変更してください。切り出し元に独立写真の高解像度素材がないため、画角・解像度には制限があります。
+
+## テキスト・デザイン変更
+
+文章はすべてindex.html内にあります。見出し、本文、FAQ回答、フォームラベルを直接変更できます。色・角丸・影・余白・中央幅・ヘッダー高さはcss/style.css冒頭のCSS Variablesで管理します。中央カラムは430px、SP左右余白は24pxです。サイド要素は1200px未満で非表示です。
+
+カンプに未掲載のFAQ回答は、カンプ本文・依頼内容に基づく仮原稿です。オンライン対応等の正式な運用内容に合わせて確認・更新してください。
+
+## フォーム送信先変更
+
+現在はデモです。送信・保存は行わず、完了状態もデモと表示します。
+
+1. index.htmlのformの `data-endpoint=""` に送信先URLを指定。
+2. js/main.jsのfetch処理を受信APIに合わせて変更。現在はPOST / JSON形式です。Formspree、GAS、Supabase等の仕様に応じてContent-Typeやペイロードを調整してください。
+3. 受信側でCORS、必須チェック、レート制限などを実装。秘密鍵をフロントエンドに記載しないでください。
+4. 正式送信を確認してから、HTMLのdemo-noticeとプライバシーダイアログの仮文言を更新。
+
+送信失敗時は入力内容を保持します。必須、年齢、メール、国内電話番号（ハイフン・空白・括弧可）、同意を検証します。検証は受信側でも行ってください。
+
+## GitHubへ保存
+
+既存リポジトリで、静的サイトに必要なファイルだけを追加する例：
+
+```
+git add index.html css js assets README.md .gitignore
+git commit -m "Add Soul Sync career support static landing page"
+git push origin HEAD
+```
+
+新規Repositoryの場合はGitHubで空のRepositoryを作成し、ローカルでgit init後にremoteを登録してpushしてください。この作業ではcommit・pushは実行していません。
+
+## 公開方法の候補
+
+静的ファイル一式をサーバーの公開ディレクトリへアップロードできます。GitHub Pagesは公開ブランチのルート、Netlifyはビルドコマンドなし・公開ディレクトリを静的ファイルのルート、VercelはFramework PresetをOtherに設定する方法が候補です。既存Next.jsファイルの自動検出を避けるため、公開用Repositoryには上記静的サイトファイルだけを入れてください。
+
+公開前にcanonical・OGPのexample.com、favicon仮素材、正式プライバシーポリシー、フォームAPI、写真・FAQ原稿を差し替えます。公開手続きは今回行っていません。
+
+## アクセシビリティ・動作
+
+FAQはQ1のみ初期表示、複数項目を独立して開閉できます。メニューはEscapeで閉じます。ポリシーはネイティブdialog、フォームはlabel・aria-describedby・エラー通知・送信状態を使用。動きを減らすOS設定に対応しています。Google Fonts以外の外部依存はありません。
