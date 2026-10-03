@@ -85,3 +85,13 @@ CSSの `.hero::before` だけで背景を表示します。HTMLコンテンツ�
 `.hero` の変数 `--hero-decoration-image`（画像）、`--hero-decoration-size`（サイズ）、`--hero-decoration-position`（位置）、`--hero-decoration-opacity`（濃さ）で調整可能です。
 スマホはcover / center、768px以上は110% auto / center top。トリミングはCSSで行い、元画像は変更しません。
 装飾はCSS背景なので読み上げ・フォーカス対象にならず、pointer-events:noneでリンク等の操作を妨げません。
+
+## PC左右サイドカラムの改修
+
+1200px以上で固定表示。中央メインは430px・画面中央を維持。低い画面では左右それぞれ内部スクロールが可能です。1200px未満では非表示で、既存スマホメニューを使用します。
+右キャラクターは最新の正式提供素材 `05_ガッツポーズ.png` を加工せず `assets/images/mascot/think-chan-cheer.png` にコピー。今回の指定により、PC右カラムは全セクションで表示します（以前の01・06・10のみの表示制限から変更）。中央コンテンツ内のキャラクターは変更していません。
+SNS正式URLは `js/main.js` の `SOCIAL_URLS`（x / instagram / youtube / note）に設定してください。未設定時は「URL準備中」の無効ボタン、httpsの正式URL設定後は新しいタブで開くリンクになります。仮のURLは使っていません。
+
+## FVキャラクターの全身素材への差し替え
+
+FVは最新の正式素材 `01_手を振る.png` を加工せず `assets/images/mascot/think-chan-wave-full.png` にコピーして使用。元の胸元までの画像から全身素材へ差し替え、顔・耳・足先まで表示しています。右サイドのガッツポーズは変更していません。
