@@ -11,3 +11,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## 静的LPのデザイン運用
 
 新しいイラストの制作・追加やLPのデザイン改修を行う前に、既存の `design.md` の「静的LPのイラストガイドライン（2026-10-03更新）」を必ず参照してください。正式な基準素材6点と、画像・HTMLテキストの分離ルールを維持してください。既存ガイドラインに追記しているため、重複するDESIGN_GUIDELINES.mdは作成しません。
+
+WORK OPTIONSのロードマップや関連デザインを改修する際は、`DESIGN_GUIDELINES.md` も参照してください。全体・イラストの基準は引き続き `design.md` に従い、ロードマップ固有の規定はDESIGN_GUIDELINES.mdを使用してください。

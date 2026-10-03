@@ -301,3 +301,69 @@
   .problems-section .problems-illustration { width: min(100%, 150px); }
   .problems-section .problems-card p { font-size: 16px; text-align: center; }
 }
+
+/* Community introduction cards only. */
+#community .community-cards { display: grid; gap: 18px; margin-top: 28px; clear: both; }
+#community .community-card { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; padding: 22px 18px; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-surface); box-shadow: var(--shadow); }
+#community .community-card-copy { min-width: 0; }
+#community .community-card-heading { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+#community .community-number { position: relative; flex-shrink: 0; padding-bottom: 7px; color: var(--color-primary); font: 600 28px/1 'Outfit', sans-serif; }
+#community .community-number::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: var(--color-primary); }
+#community .community-card-heading h3 { font-size: 18px; font-weight: 800; line-height: 1.65; letter-spacing: -.04em; }
+#community .community-description { font-size: 15px; line-height: 1.9; margin: 0; }
+#community .community-achievement { padding: 12px; border-radius: 14px; background: #fff3ed; margin-top: 16px; }
+#community .community-achievement p { margin: 0; color: var(--color-primary); font-size: 13px; line-height: 1.8; font-weight: 700; }
+#community .community-achievement strong { display: inline-block; font-size: 19px; font-weight: 800; }
+#community .community-achievement .community-recruitment { color: var(--color-text-primary); font-size: 12px; font-weight: 500; margin-top: 3px; }
+#community .community-illustration { width: 100%; max-width: 300px; height: auto; object-fit: contain; justify-self: center; align-self: center; }
+@media (min-width: 1200px) {
+  #community .community-card { grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: 12px; padding: 18px 12px; }
+  #community .community-card-heading { gap: 8px; flex-wrap: wrap; }
+  #community .community-card-heading h3 { font-size: 17px; }
+  #community .community-description { font-size: 14px; line-height: 1.85; }
+  #community .community-achievement { padding: 10px; }
+  #community .community-achievement p { font-size: 12px; }
+  #community .community-achievement strong { font-size: 18px; }
+}
+
+/* WORK OPTIONS experience only. */
+#work .work-experience { margin-top: 30px; padding: 22px 14px; border-radius: var(--radius); background: linear-gradient(145deg,#fff0e8,#fff9f4); }
+#work .work-choices { border: 0; margin: 0; padding: 0; min-width: 0; }
+#work .work-choices legend { width: 100%; padding: 0; margin-bottom: 18px; text-align: center; font-size: 18px; font-weight: 800; line-height: 1.8; }
+#work .work-choice-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+#work .work-choice { position: relative; cursor: pointer; }
+#work .work-choice input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; min-height: 0; padding: 0; }
+#work .work-choice-body { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; height: 100%; padding: 8px 10px 16px; border: 2px solid var(--color-border); border-radius: 16px; background: white; transition: border-color 260ms, background-color 260ms; }
+#work .work-choice-body img { width: min(100%,140px); height: auto; object-fit: contain; }
+#work .work-choice-title { font-size: 14px; font-weight: 700; line-height: 1.7; text-align: center; }
+#work .work-choice-check { position: absolute; right: 8px; top: 8px; display: none; width: 23px; height: 23px; align-items: center; justify-content: center; border-radius: 50%; background: var(--color-primary); color: white; font-size: 14px; }
+#work .work-choice input:checked+.work-choice-body { border-color: var(--color-primary); background: #fff7f0; }
+#work .work-choice input:checked+.work-choice-body .work-choice-check { display: flex; }
+#work .work-choice input:checked+.work-choice-body .work-choice-title { color: var(--color-primary); }
+#work .work-choice input:focus-visible+.work-choice-body { outline: 3px solid #2463a0; outline-offset: 3px; }
+#work .work-choice:hover .work-choice-body { border-color: var(--color-secondary); }
+#work .work-roadmap { margin-top: 28px; }
+#work .work-roadmap h3 { font-size: 19px; line-height: 1.8; margin-bottom: 20px; }
+#work .work-roadmap h3 span { color: var(--color-primary); }
+#work .work-steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 24px; }
+#work .work-step { position: relative; display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 2px 10px; align-items: center; padding: 14px 12px; border-radius: 16px; background: #fffffff0; border: 1px solid var(--color-border); }
+#work .work-step:not(:last-child)::after { content: '↓'; position: absolute; left: 50%; bottom: -27px; transform: translateX(-50%); color: var(--color-secondary); font-size: 21px; line-height: 24px; }
+#work .work-step-label { grid-column: 1 / -1; font: 600 12px/1.5 'Outfit',sans-serif; letter-spacing: .07em; color: var(--color-primary); }
+#work .work-step img { width: 90px; height: auto; object-fit: contain; }
+#work .work-step-title { font-size: 16px; line-height: 1.8; margin: 0; font-weight: 700; }
+#work .work-step:last-child { border-color: #ffbc9c; background: #fffaf4; }
+#work .work-roadmap-note { font-size: 12px; color: var(--color-text-secondary); margin-top: 20px; line-height: 1.9; }
+#work .work-roadmap-cta { margin-top: 20px; font-size: 14px; min-height: 60px; gap: 6px; padding-inline: 10px; }
+#work .work-jobs-heading { font-size: 21px; margin-top: 38px; }
+#work .work-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media(max-width:359px) {
+  #work .work-experience { padding-inline: 10px; }
+  #work .work-choice-body { padding-inline: 7px; }
+  #work .work-choice-title { font-size: 13px; }
+  #work .work-step { grid-template-columns: 68px minmax(0,1fr); gap: 8px; padding-inline: 10px; }
+  #work .work-step img { width: 68px; }
+  #work .work-step-title { font-size: 15px; }
+  #work .work-roadmap-cta { font-size: 12px; }
+}
+
+#work .work-choices legend>span { display: inline-block; white-space: nowrap; }
