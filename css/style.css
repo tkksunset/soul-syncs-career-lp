@@ -388,3 +388,71 @@
 .btn:active { transform: translateY(1px) scale(.985); }
 @media (hover: none) { .btn:hover { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .btn:active { transform: none; } }
+
+/* WORK OPTIONS visual balance only; original PNG files remain unchanged. */
+#work .work-choice-body { padding: 20px 10px 18px; gap: 12px; min-height: 184px; }
+#work .work-visual { position: relative; display: block; flex-shrink: 0; overflow: hidden; width: clamp(72px, 24vw, 96px); height: clamp(72px, 24vw, 96px); margin-inline: auto; }
+#work .work-visual>img { position: absolute; width: var(--asset-scale); max-width: none; height: auto; left: var(--asset-left); top: var(--asset-top); object-fit: contain; }
+#work .work-choice-check { top: 7px; right: 7px; width: 20px; height: 20px; font-size: 12px; }
+#work .work-step { display: flex; flex-direction: column; align-items: stretch; padding: 20px; gap: 12px; min-height: 180px; }
+#work .work-step .work-visual { width: clamp(72px, 20vw, 96px); height: clamp(72px, 20vw, 96px); }
+#work .work-step-label { align-self: flex-start; }
+#work .work-step-title { text-align: center; font-size: 16px; line-height: 1.8; }
+@media (min-width: 768px) {
+  #work .work-choice-body { min-height: 200px; gap: 14px; }
+  #work .work-choice-body .work-visual { width: 104px; height: 104px; }
+  #work .work-step .work-visual { width: 96px; height: 96px; }
+}
+@media (min-width: 1200px) {
+  #work .work-choice-body { min-height: 212px; gap: 16px; }
+  #work .work-choice-body .work-visual { width: 112px; height: 112px; }
+  #work .work-step .work-visual { width: 104px; height: 104px; }
+}
+
+/* Fit the visible artwork rather than the transparent canvas. Two-pixel safety margin. */
+#work .work-visual-01 { --asset-scale: 210.52632%; --asset-left: -54.73684%; --asset-top: -55.00000%; }
+#work .work-visual-02 { --asset-scale: 196.07843%; --asset-left: -48.03922%; --asset-top: -47.79412%; }
+#work .work-visual-03 { --asset-scale: 202.02020%; --asset-left: -50.75758%; --asset-top: -51.01010%; }
+#work .work-visual-04 { --asset-scale: 197.04433%; --asset-left: -48.27586%; --asset-top: -48.27586%; }
+#work .work-visual-05 { --asset-scale: 228.57143%; --asset-left: -64.28571%; --asset-top: -64.28571%; }
+#work .work-visual-06 { --asset-scale: 210.52632%; --asset-left: -54.93421%; --asset-top: -55.26316%; }
+#work .work-visual-07 { --asset-scale: 217.68707%; --asset-left: -59.18367%; --asset-top: -58.50340%; }
+#work .work-visual-08 { --asset-scale: 242.42424%; --asset-left: -71.21212%; --asset-top: -70.83333%; }
+
+/* WORK OPTIONS roadmap copy: full descriptions, natural wrapping. */
+#work .work-step-title { text-wrap: pretty; overflow-wrap: anywhere; }
+#work .work-step-description { margin: 0; font-size: 14px; line-height: 1.9; text-align: left; color: var(--color-text-secondary); overflow-wrap: anywhere; }
+#work .work-step { gap: 12px; }
+
+/* ABOUT: consultation values, scoped to the three cards only. */
+#about .about-values{margin-top:32px}
+#about .about-values-heading{font-size:23px;line-height:1.65;text-wrap:pretty;overflow-wrap:anywhere}
+#about .about-values-intro{margin-top:14px;line-height:1.95}
+#about .about-values-grid{gap:16px;margin-top:24px}
+#about .about-value-card .card-content{padding:22px}
+#about .about-value-top{display:flex;align-items:center;justify-content:center;gap:22px;margin-bottom:18px}
+#about .about-value-image{display:block;width:112px;height:112px;padding:8px;flex-shrink:0;border-radius:50%;overflow:hidden}
+#about .about-value-image img{width:100%;height:100%;object-fit:contain}
+#about .about-value-top .number{margin:0;font-size:32px}
+#about .about-value-card h4{margin:0 0 12px;font-size:19px;font-weight:800;line-height:1.65;letter-spacing:-.04em;text-wrap:pretty;overflow-wrap:anywhere}
+#about .about-value-card p{font-size:15px;line-height:1.95;overflow-wrap:anywhere}
+@media(min-width:1200px){#about .about-value-image{width:120px;height:120px}}
+
+/* Conversation speaker icons only. */
+#career .career-conversation dt{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+#career .conversation-avatar{display:block;flex-shrink:0;width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--color-surface)}
+#career .conversation-avatar img{width:100%;height:100%;object-fit:contain}
+
+/* CAREER DESIGN: empathy callout only. */
+#career .career-empathy{padding:24px 18px}
+#career .career-empathy h3{font-size:22px;line-height:1.65;text-wrap:pretty}
+#career .career-empathy-lead{font-size:14px;margin-top:10px}
+#career .career-empathy-list{list-style:none;margin:20px 0 0;padding:0 14px;background:var(--color-surface);border-radius:16px}
+#career .career-empathy-list li{display:flex;align-items:flex-start;gap:10px;padding:16px 0;font-size:14px;line-height:1.95;overflow-wrap:anywhere}
+#career .career-empathy-list li+li{border-top:1px solid var(--color-border)}
+#career .career-empathy-check{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:24px;height:24px;margin-top:2px;border-radius:50%;background:var(--color-accent);color:var(--color-primary);font-weight:800}
+#career .career-empathy-list strong{display:block;margin:0;font-size:inherit;font-weight:800;color:var(--color-primary);text-wrap:balance}
+#career .career-empathy-message{margin-top:26px;text-align:center;font-size:18px;font-weight:800;line-height:1.85;text-wrap:pretty}
+#career .career-empathy-note{margin-top:14px;font-size:13px;line-height:1.95}
+#career .career-empathy-cta{margin-top:22px;font-size:14px}
+#career .career-empathy-trust{margin-top:10px;text-align:center;font-size:11px;line-height:1.8;color:var(--color-text-secondary)}
