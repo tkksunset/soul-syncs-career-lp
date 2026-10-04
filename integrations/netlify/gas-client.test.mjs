@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {postToGas} from './gas-client.mjs';
+const url='https://script.google.com/macros/s/test/exec';
+test('ContentService redirect uses GET without secret body',async()=>{let count=0;const text=await postToGas(url,{secret:'test'}, {fetchImpl:async(u,options)=>{if(!count++){assert.equal(options.method,'POST');return new Response('',{status:302,headers:{location:'https://script.googleusercontent.com/macros/echo?test=1'}});}assert.equal(options.method,'GET');assert.equal(options.body,undefined);return new Response('{"ok":true}');}});assert.equal(text,'{"ok":true}');});
+for(const [body,code] of [['Unauthorized','GAS_AUTH_ERROR'],['Invalid data','GAS_INVALID_DATA'],['Error','GAS_STORAGE_ERROR']])test('rejects '+code,async()=>{await assert.rejects(postToGas(url,{}, {fetchImpl:async()=>new Response(body)}),{code});});
+test('rejects untrusted redirect',async()=>{await assert.rejects(postToGas(url,{}, {fetchImpl:async()=>new Response('',{status:302,headers:{location:'https://example.com/'}})}),{code:'GAS_REDIRECT_ERROR'});});
+test('network errors do not expose request or secret',async()=>{await assert.rejects(postToGas(url,{}, {fetchImpl:async()=>{throw new Error('secret');}}),{message:'GAS_NETWORK_ERROR'});});
