@@ -5,3 +5,8 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/thanks"
+  to = "/thanks/index.html"
+  status = 200

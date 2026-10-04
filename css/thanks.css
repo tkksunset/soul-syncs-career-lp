@@ -1,0 +1,13 @@
+/* Independent thank-you page; no selectors apply to the LP. */
+.thanks-page{min-height:100svh;display:grid;place-items:center;padding:24px 0}
+.thanks-page .thanks-content{padding:32px 24px;text-align:center;background:var(--color-surface);border-radius:var(--radius)}
+.thanks-page .thanks-character{width:140px;height:auto;margin:0 auto 24px;object-fit:contain}
+.thanks-page h1{font-size:26px;line-height:1.65;margin:0 0 20px;letter-spacing:-.04em}
+.thanks-page .thanks-lead{font-size:15px;line-height:1.95}
+.thanks-page .thanks-guidance{margin-top:24px;padding:20px 12px;background:var(--color-accent);border-radius:var(--radius);font-size:14px;line-height:1.95}
+.thanks-page .thanks-guidance p+p{margin-top:12px}
+.thanks-page .thanks-home{margin-top:26px;font-size:15px}
+.thanks-page .thanks-brand{margin-top:32px}
+.thanks-page .thanks-brand img{width:160px;height:auto;margin-inline:auto}
+.thanks-page .thanks-brand p{margin-top:10px;font-size:12px;color:var(--color-text-secondary)}
+@media(max-width:359px){.thanks-page .thanks-content{padding-inline:18px}.thanks-page h1{font-size:23px}}
