@@ -501,3 +501,32 @@
 #application .field-hint{font-size:12px;line-height:1.85;margin-top:8px;color:var(--color-text-secondary)}
 #application .form .btn{gap:6px;font-size:14px;line-height:1.8}
 #application .form textarea{line-height:1.85}
+
+/* Smartphone first view: independent from the desktop hero. */
+.hero-mobile { display: none; }
+@media (max-width: 767px) {
+  #top.hero { padding: 24px 16px 32px; isolation: isolate; background: linear-gradient(155deg, #fffdf9 20%, #fff0e8 72%, #fffdf9); overflow: hidden; }
+  #top > .section-label, #top > .hero-main, #top > .hero-cta, #top > .hero-benefits { display: none; }
+  #top .hero-mobile { display: block; position: relative; }
+  #top .hero-mobile::before { content: ""; position: absolute; width: 360px; height: 470px; right: -170px; top: 155px; border-radius: 60% 40% 50% 50%; transform: rotate(25deg); background: linear-gradient(145deg, #fff0e8, #ffd29c); z-index: -1; pointer-events: none; }
+  #top .hero-mobile::after { content: ""; position: absolute; width: 210px; height: 210px; right: -95px; top: -115px; border-radius: 50%; background: #fff0e8; z-index: -1; pointer-events: none; }
+  #top .hero-mobile-heading { margin: 0 0 16px; font-size: clamp(29px, 8.5vw, 36px); line-height: 1.5; font-weight: 900; letter-spacing: -.045em; }
+  #top .hero-mobile-heading > span { display: block; white-space: nowrap; }
+  #top .hero-mobile-heading em { color: var(--color-primary); font-style: normal; }
+  #top .hero-mobile-heading small { font-size: .68em; }
+  #top .hero-mobile-subcopy { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.8; }
+  #top .hero-mobile-scene { position: relative; height: clamp(290px, 85vw, 365px); margin-top: 8px; }
+  #top .hero-mobile-scene img { position: absolute; right: 0; bottom: 0; width: 64%; max-width: 240px; height: auto; object-fit: contain; }
+  #top .hero-mobile-message { position: absolute; top: 75px; left: 0; z-index: 1; margin: 0; font-size: clamp(12px, 3.3vw, 14px); font-weight: 600; line-height: 1.9; transform: rotate(-6deg); }
+  #top .hero-mobile-message strong { display: inline-block; color: var(--color-primary); font-size: 30px; border-bottom: 3px solid #ffd29c; line-height: 1.6; }
+  #top .hero-mobile-button { display: flex; width: 100%; min-height: 64px; margin: 14px 0 0; padding: 15px 10px; gap: 7px; border-radius: 999px; font-size: clamp(13px, 3.7vw, 15px); line-height: 1.6; box-shadow: 0 7px 18px #f2380b26; }
+  #top .hero-mobile-button > span:last-child { flex-shrink: 0; }
+  #top .hero-mobile-benefits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; margin: 20px 0 0; list-style: none; gap: 0; }
+  #top .hero-mobile-benefits li { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: clamp(10px, 2.8vw, 12px); font-weight: 700; line-height: 1.6; text-align: center; }
+  #top .hero-mobile-benefits li + li { border-left: 1px solid var(--color-border); }
+  #top .hero-mobile-benefit-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--color-accent); color: var(--color-primary); font-size: 27px; }
+  #top .hero-mobile-benefit-icon svg { width: 25px; height: 25px; }
+}
+@media (max-width: 359px) {
+  #top .hero-mobile-button .hero-cta-icon { display: none; }
+}
