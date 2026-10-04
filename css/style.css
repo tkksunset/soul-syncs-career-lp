@@ -588,3 +588,36 @@
   #community > .section-heading br,
   #work > .section-heading br { display: none; }
 }
+
+/* Desktop header CTA only; preserve the existing header dimensions. */
+@media (min-width: 1200px) {
+  .header .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 800;
+    line-height: 1.5;
+    transition: background-color .2s, transform .2s, box-shadow .2s;
+  }
+  .header .header-cta:hover {
+    background: #d93209;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px #f2380b26;
+  }
+  .header .header-cta:focus-visible { outline-offset: 4px; }
+}
+@media (min-width: 1200px) and (prefers-reduced-motion: reduce) {
+  .header .header-cta { transition: none; }
+  .header .header-cta:hover { transform: none; }
+}
+
+/* Keep short semantic units intact, without locking whole sentences. */
+@media (max-width: 1199px) {
+  main .text-unit { white-space: nowrap; }
+  main :is(h2,h3,h4) { word-break: normal; line-break: strict; }
+}

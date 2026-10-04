@@ -8,6 +8,6 @@
 .privacy-page :is(p,li){font-size:15px;line-height:1.95;text-wrap:pretty}
 .privacy-page :is(ul,ol){padding-left:24px;margin:18px 0}
 .privacy-page li+li{margin-top:8px}
-.privacy-page .privacy-home{max-width:330px;margin:40px auto 0;min-height:56px}
+.privacy-page .privacy-home{max-width:382px;margin:26px auto 0;min-height:56px;font-size:15px}
 .privacy-page .privacy-footer{padding:24px 20px;text-align:center;border-top:1px solid var(--color-border);color:var(--color-text-secondary)}
 .privacy-page .privacy-footer small{font-family:'Outfit',sans-serif}
