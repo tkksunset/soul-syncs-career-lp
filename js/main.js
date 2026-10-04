@@ -33,9 +33,16 @@ const submitLabel=submit.innerHTML;
 function validate(field){let error='';const value=field.value.trim();if(field.type==='checkbox'){if(!field.checked)error='個人情報の取り扱いへの同意が必要です。';}else if(!value){const label=document.querySelector('label[for="'+field.id+'"]');const name=label?label.childNodes[0].textContent.trim():'この項目';error=field.tagName==='SELECT'?name+'を選択してください。':name+'を入力してください。';}else if(field.name==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))error='正しいメールアドレスを入力してください。';document.getElementById(field.id+'-error').textContent=error;if(error)field.setAttribute('aria-invalid','true');else field.removeAttribute('aria-invalid');return error;}
 form.querySelectorAll('[required]').forEach(field=>{field.addEventListener('blur',()=>validate(field));field.addEventListener('input',()=>{if(field.hasAttribute('aria-invalid'))validate(field);});});
 function collectApplicationValues(form){return Object.fromEntries(new FormData(form));}
-// Test transport only. Replace this function when production submission is connected.
-async function submitApplication(values){return {test:true};}
-form.addEventListener('submit',async e=>{e.preventDefault();if(submit.disabled)return;status.textContent='';const invalid=[...form.querySelectorAll('[required]')].filter(field=>validate(field));summary.hidden=!invalid.length;if(invalid.length){summary.textContent=`${invalid.length}項目をご確認ください。`;invalid[0].focus();return;}submit.disabled=true;submit.setAttribute('aria-busy','true');submit.textContent='送信中…';try{const values=collectApplicationValues(form);await submitApplication(values);status.textContent='お申し込みありがとうございます。現在はテスト環境のため、実際の申し込みは受け付けていません。';status.focus();}catch{status.textContent='送信できませんでした。時間をおいて再度お試しください。入力内容は保持されています。';status.focus();}finally{submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=submitLabel;}});
+// Netlify detects the static form at deploy time; AJAX uses URL-encoded fields.
+async function submitApplication(values){
+  const response=await fetch(form.getAttribute('action')||'/',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams(values).toString()
+  });
+  if(!response.ok)throw new Error('Form submission failed');
+}
+form.addEventListener('submit',async e=>{e.preventDefault();if(submit.disabled)return;status.textContent='';const invalid=[...form.querySelectorAll('[required]')].filter(field=>validate(field));summary.hidden=!invalid.length;if(invalid.length){summary.textContent=`${invalid.length}項目をご確認ください。`;invalid[0].focus();return;}submit.disabled=true;submit.setAttribute('aria-busy','true');submit.textContent='送信中…';try{const values=collectApplicationValues(form);await submitApplication(values);status.textContent='お申し込みありがとうございます。担当者よりメールにてご連絡いたします。';status.focus();}catch{status.textContent='送信に失敗しました。お手数ですが、時間をおいて再度お試しください。';status.focus();}finally{submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=submitLabel;}});
 
 // Set official URLs here. Empty entries remain disabled; no placeholder destinations.
 const SOCIAL_URLS = {
