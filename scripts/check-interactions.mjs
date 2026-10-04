@@ -1,0 +1,23 @@
+import { chromium } from '@playwright/test';
+import { appendFile } from 'node:fs/promises';
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+await page.goto('http://127.0.0.1:3000',{waitUntil:'networkidle'});
+await page.waitForTimeout(900);
+if(Number(await page.locator('h1').evaluate(el=>getComputedStyle(el).opacity))!==1)throw new Error('Hero entrance did not finish');
+const hiddenBefore=await page.locator('.reveal:not(.visible)').count();
+if(hiddenBefore===0)throw new Error('Scroll reveals were not initially staged');
+await page.locator('#design').scrollIntoViewIfNeeded();
+await page.waitForTimeout(900);
+if(!await page.locator('.design-copy').evaluate(el=>el.classList.contains('visible')))throw new Error('Design section not revealed');
+await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+await page.waitForTimeout(300);
+if(!await page.locator('.design-copy').evaluate(el=>el.classList.contains('visible')))throw new Error('Reveal reset after scrolling back');
+const cta=page.locator('.hero .cta');const before=await cta.boundingBox();await cta.hover();await page.waitForTimeout(280);const hovered=await cta.boundingBox();if(Math.abs((before.y-hovered.y)-2)>.5)throw new Error('CTA hover did not lift 2px');
+await page.mouse.down();await page.waitForTimeout(250);const pressed=await cta.boundingBox();if(pressed.width>=hovered.width*.99)throw new Error('CTA press did not shrink');await page.mouse.up();await page.waitForTimeout(900);
+await page.locator('.video-preview summary').click();await page.getByText('会社紹介動画は準備中です。',{exact:false}).waitFor();
+const missing=[];for(const photo of await page.locator('.photo').all()){await photo.scrollIntoViewIfNeeded();await page.waitForTimeout(100);const img=photo.locator('img');await img.evaluate(img=>img.decode());if(!await img.evaluate(img=>img.naturalWidth>0))missing.push(await img.getAttribute('src'));}
+if(missing.length)throw new Error(`Unloaded photos: ${missing}`);
+const mascotCount=await page.locator('img[alt="Soul Sync’s公式キャラクター シンクちゃん"]').count();if(mascotCount!==4)throw new Error('Official mascot placement count changed');
+await appendFile('screenshots/verification.txt','Normal motion: hero entrance, scroll reveal persistence, CTA hover and press passed.\nCompany video: honest unavailable state verified.\nAll photographic assets decoded; four official mascot placements verified.\n');
+console.log('Motion, video state, image loading and official mascot checks passed.');await browser.close();

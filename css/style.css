@@ -530,3 +530,61 @@
 @media (max-width: 359px) {
   #top .hero-mobile-button .hero-cta-icon { display: none; }
 }
+
+/* One-time entrance for the smartphone FV mascot only. */
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  #top .hero-mobile-scene img {
+    transform-origin: center bottom;
+    animation: thinkChanMobilePop .8s .2s cubic-bezier(.22, .61, .36, 1) 1 backwards;
+  }
+  @keyframes thinkChanMobilePop {
+    0% { opacity: 0; transform: translateY(60px) scale(.9); }
+    65% { opacity: 1; transform: translateY(-12px) scale(1.03); }
+    85% { opacity: 1; transform: translateY(5px) scale(.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+/* Japanese text flow on phones/tablets; desktop typography is unchanged. */
+@media (max-width: 1199px) {
+  main .section :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,label,.btn,.field-label),
+  .mobile-nav a, .footer p, dialog p {
+    word-break: normal;
+    overflow-wrap: break-word;
+    line-break: strict;
+  }
+  main .section :is(h2,h3,h4,h5,h6),
+  #about .about-values-heading, #about .about-value-card h4,
+  #career .career-empathy h3, #support .support-card h3,
+  #work .work-step-title {
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+  main .section :is(p,li,dd), #about .about-value-card p,
+  #work .work-step-description, #support .support-description {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+  #career .career-empathy-list li > span:last-child,
+  main .faq-toggle > span:nth-child(2), #work .work-step-title {
+    min-width: 0;
+  }
+  #career .career-empathy-list li > span:last-child,
+  #career .career-empathy-message { text-wrap: balance; }
+  #career .career-empathy-list strong {
+    display: inline;
+    text-wrap: inherit;
+  }
+  #career .career-empathy-list { padding-inline: 12px; }
+  #career .career-empathy-list li { gap: 8px; }
+  #problems .problems-card p br,
+  #problems > p br,
+  #career > p br,
+  #career .career-empathy-message br,
+  #community .community-card h3 br,
+  #application > p.center br { display: none; }
+  #about > .section-heading br,
+  #career > .section-heading br,
+  #community > .section-heading br,
+  #work > .section-heading br { display: none; }
+}
