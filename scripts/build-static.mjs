@@ -5,3 +5,5 @@ await cp('index.html','dist/index.html');
 for(const folder of ['css','js','assets'])await cp(folder,'dist/'+folder,{recursive:true});
 
 await cp('thanks','dist/thanks',{recursive:true});
+
+await cp('privacy-policy','dist/privacy-policy',{recursive:true});

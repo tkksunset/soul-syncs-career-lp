@@ -1,0 +1,13 @@
+/* Standalone privacy policy; all rules are scoped to this page. */
+.privacy-page .privacy-header{padding:24px max(20px,calc((100% - 760px)/2));border-bottom:1px solid var(--color-border);background:var(--color-surface)}
+.privacy-page .privacy-content{width:100%;max-width:760px;padding:40px clamp(20px,4vw,40px);background:var(--color-surface)}
+.privacy-page h1{font-size:clamp(24px,5vw,30px);line-height:1.6;margin-bottom:24px;text-wrap:balance}
+.privacy-page h2{font-size:20px;line-height:1.7;padding-bottom:10px;margin:0 0 18px;border-bottom:1px solid var(--color-border);text-wrap:balance}
+.privacy-page section{margin-top:36px}
+.privacy-page :is(p,li,h1,h2){word-break:normal;overflow-wrap:break-word;line-break:strict}
+.privacy-page :is(p,li){font-size:15px;line-height:1.95;text-wrap:pretty}
+.privacy-page :is(ul,ol){padding-left:24px;margin:18px 0}
+.privacy-page li+li{margin-top:8px}
+.privacy-page .privacy-home{max-width:330px;margin:40px auto 0;min-height:56px}
+.privacy-page .privacy-footer{padding:24px 20px;text-align:center;border-top:1px solid var(--color-border);color:var(--color-text-secondary)}
+.privacy-page .privacy-footer small{font-family:'Outfit',sans-serif}

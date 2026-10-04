@@ -24,7 +24,7 @@ let activeSectionId;
 function updateSection(){const marker=innerHeight*.35;let active=sections[0];for(const section of sections){if(section.getBoundingClientRect().top<=marker)active=section;}if(activeSectionId!==active.id){activeSectionId=active.id;sideLinks.forEach(link=>{if(link.hash==='#'+active.id)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});}scheduled=false;}
 addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(updateSection);}},{passive:true});addEventListener('resize',updateSection);updateSection();
 const privacy=document.querySelector('#privacy');
-document.querySelectorAll('.privacy-link').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();privacy.showModal();}));
+document.querySelectorAll('.privacy-link[href="#privacy"]').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();privacy.showModal();}));
 const form=document.querySelector('#application-form');
 const summary=document.querySelector('#form-errors');
 const status=document.querySelector('#form-status');
